@@ -1,3 +1,3 @@
 - Clean install windows and move from google colab to native / wsl2 tensorflow
 - Research into VAEs
-- Implement and experiment within existing CNN
+- Learn how to implement and experiment with VAEs on existing CNN

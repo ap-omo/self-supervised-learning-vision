@@ -11,9 +11,9 @@
 - revised related machine learning topics (ANNs, backpropagation, VAEs etc.)
 - revised related computer vision topics (Convolutions, CNNs etc.)
 
-- wrote project outline consisting of the description (aims, substance, end-goals etc.), tasks and deliverables, and bibliography of research 
+- wrote project outline consisting of the description (aims, substance, end-goals etc.), tasks and deliverables, and bibliography of research papers/articles planned to use for project
 
 - unable to figure out GPU passthrough to VM at the moment, using google colab in the meantime
 - will clean install windows after backing up files and retry native/wsl tensorflow installation
 
-- as advised in order to familiiarise myself with tensorflow and keras, created simple CNN on colab
+- as advised in order to familiiarise myself with tensorflow and keras, created simple CNN on colab (Conv2D, 1x1, Conv2DTranspose)

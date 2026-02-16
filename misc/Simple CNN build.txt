@@ -1,4 +1,4 @@
-# 1. Setup
+# 1a. Setup
 
 import tensorflow as tf
 from tensorflow import keras
@@ -14,15 +14,15 @@ print("GPU Available:", tf.config.list_physical_devices('GPU'))
 np.random.seed(42)
 tf.random.set_seed(42)
 
-
-# 2. Conv2D
-
 # Create simple test image (32×32 with 3 color channels)
 test_image = np.random.randn(1, 32, 32, 3).astype(np.float32)
 test_image = (test_image - test_image.min()) / (test_image.max() - test_image.min()) # Normalize to 0-1 so image can display properly
 print(f"Input shape: {test_image.shape}") # Shape format: (batch_size, height, width, channels)
 
-# Create simple convolutional layer
+
+# (1b). Conv2D
+
+# Simple convolutional layer
 conv_layer = layers.Conv2D(
 filters=16,         # Learn 16 different patterns
 kernel_size=(3, 3), # Each filter is 3×3
@@ -36,8 +36,7 @@ name='conv_layer_1'
 output = conv_layer(test_image)
 print(f"Output shape: {output.shape}") # 16 feature maps instead of 3 color channels
 
-
-# 3. 1x1 Convolution
+# (1c). 1x1 Convolution
 
 # Start with 64 channels
 x = layers.Conv2D(filters=64, kernel_size=3,
@@ -53,7 +52,7 @@ x = layers.Conv2D(filters=64, kernel_size=1, activation='relu', name='expand')(x
 print(f"After 1×1 expansion: {x.shape}") # 16 to 64 channels
 
 
-# 4. Conv2D Transpose (Upsampling)
+# (1d). Conv2D Transpose (Upsampling)
 
 # Start with a small feature map (downsampled)
 small_features = layers.Conv2D(32, 3, strides=2, # Strides=2 halves spatial dimensions
@@ -72,7 +71,7 @@ activation='relu'
 print(f"After upsampling (transpose conv): {upsampled.shape}") # Back to 32×32
 
 
-# 5. Building CNN (combining all 3)
+# 2a. Building CNN (combining all 3)
 
 def build_simple_autoencoder():
   """
@@ -81,33 +80,37 @@ def build_simple_autoencoder():
   Decoder: 1×1 expand -> ConvTranspose -> ConvTranspose
   """
   inputs = keras.Input(shape=(32, 32, 3))
- 
+
   # Encoder
   x = layers.Conv2D(32, 3, strides=2, padding='same', activation='relu', name='enc_conv1')(inputs)
+  x = layers.BatchNormalization()(x)  # Add batch norm for stability
+
   x = layers.Conv2D(64, 3, strides=2, padding='same', activation='relu', name='enc_conv2')(x)
-  
+  x = layers.BatchNormalization()(x)
+
   # Bottleneck: compress to compact encoding
-  encoded = layers.Conv2D(8, (1, 1), activation='relu', name='bottleneck')(x) # Compact representation: 8×8 spatial with only 8 channels
- 
+  encoded = layers.Conv2D(16, (1, 1), activation='relu', name='bottleneck')(x) # Compact representation: 16×16 spatial with 16 channels
+
   # Decoder
   # Expand channels back
   x = layers.Conv2D(64, (1, 1), activation='relu', name='expand')(encoded)
- 
+  x = layers.BatchNormalization()(x)
+
   # Upsample spatial dimensions
   x = layers.Conv2DTranspose(32, 3, strides=2, padding='same', activation='relu', name='dec_conv1')(x)
+  x = layers.BatchNormalization()(x)
   x = layers.Conv2DTranspose(16, 3, strides=2, padding='same', activation='relu', name='dec_conv2')(x)
-  
+
   # Final layer to get back to RGB
-  outputs = layers.Conv2D(3, 3, padding='same', name='output')(x)
-  
-  model = keras.Model(inputs=inputs, outputs=outputs)
-  return model
+  outputs = layers.Conv2D(3, 3, padding='same', activation='sigmoid', # Add sigmoid activation as image is normalised to 0-1 
+                          name='output')(x)
+
+  return keras.Model(inputs=inputs, outputs=outputs)
 
 # Build the model
 model = build_simple_autoencoder()
 
-
-# 6. Displaying images
+# (2b). Displaying images
 
 # Display single image
 plt.figure(figsize=(4, 4))
@@ -135,7 +138,7 @@ axes[2].axis('off')
 plt.tight_layout()
 plt.show()
 
-# Feature maps (showing what filters see)
+# Feature maps (showing what filters see, run (1b) before running this for conv_layer)
 conv_output = conv_layer(test_image)
 fig, axes = plt.subplots(4, 4, figsize=(12, 12))
 for i, ax in enumerate(axes.flat):
@@ -147,11 +150,14 @@ plt.tight_layout()
 plt.show()
 
 
-# 7a. Training model with history
+# (3a). Training model with history
+
+model = build_simple_autoencoder()  # Rebuild model
 
 # Compile model (set up optimizer and loss function)
+
 model.compile(
-    optimizer='adam',
+    optimizer='adam',  # Default learning rate = 0.001
     loss='mse',  # Mean Squared Error (good for reconstruction)
     metrics=['mae']  # Mean Absolute Error (helps track progress)
 )
@@ -160,8 +166,8 @@ model.compile(
 # For autoencoder: input = output (it learns to reconstruct)
 history = model.fit(
     test_image, test_image,  # x=input, y=target (same)
-    epochs=50,               # Number of passes
-    batch_size=32,           # Process 32 images at a time
+    epochs=500,              # Number of passes
+    batch_size=32,           # Process 32 images at a time, only 1 image is being used though so same as 1
     verbose=1                # Show progress
 )
 
@@ -188,7 +194,7 @@ plt.show()
 print(f"Final loss: {history.history['loss'][-1]:.4f}")
 
 
-# 7b. Training on real data (MSINT dataset)
+# 3b. Training on real data (MNIST dataset)
 
 # Load MNIST dataset
 (x_train, _), (x_test, _) = keras.datasets.mnist.load_data()
@@ -210,11 +216,17 @@ x_test = np.repeat(x_test, 3, axis=-1)
 print(f"Training data: {x_train.shape}")  # (60000, 32, 32, 3)
 print(f"Test data: {x_test.shape}")       # (10000, 32, 32, 3)
 
-# Rebuild model with fresh weights (very important if model has already been trained)
+# Rebuild model with fresh weights (must do if model has been already trained)
 model = build_simple_autoencoder()
 
 # Compile and train
-model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=0.001),
+    loss='binary_crossentropy',  # Better for [0,1] images
+    metrics=['mse']
+)
+
+print("Training...")
 
 history = model.fit(
     x_train, x_train,
@@ -226,7 +238,10 @@ history = model.fit(
 
 # Visualize results on test set
 test_samples = x_test[:5]
-reconstructed = model.predict(test_samples)
+reconstructed = model.predict(test_samples, verbose=0)
+
+print(f"\nOutput range: [{reconstructed.min():.4f}, {reconstructed.max():.4f}]")
+print(f"Output mean: {reconstructed.mean():.4f}")
 
 fig, axes = plt.subplots(2, 5, figsize=(15, 6))
 for i in range(5):
@@ -241,23 +256,14 @@ for i in range(5):
 plt.tight_layout()
 plt.show()
 
-# Plot training history
+# Plot loss
 plt.figure(figsize=(10, 4))
 plt.subplot(1, 2, 1)
 plt.plot(history.history['loss'], label='Training Loss')
 plt.plot(history.history['val_loss'], label='Validation Loss')
 plt.xlabel('Epoch')
-plt.ylabel('MSE Loss')
+plt.ylabel('Loss')
 plt.legend()
 plt.grid(True)
-
-plt.subplot(1, 2, 2)
-plt.plot(history.history['mae'], label='Training MAE')
-plt.plot(history.history['val_mae'], label='Validation MAE')
-plt.xlabel('Epoch')
-plt.ylabel('MAE')
-plt.legend()
-plt.grid(True)
-
-plt.tight_layout()
+plt.title('Training Progress')
 plt.show()

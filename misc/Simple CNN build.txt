@@ -147,9 +147,7 @@ plt.tight_layout()
 plt.show()
 
 
-# 7. Training Model
-
-# Training Model
+# 7a. Training model with history
 
 # Compile model (set up optimizer and loss function)
 model.compile(
@@ -190,7 +188,7 @@ plt.show()
 print(f"Final loss: {history.history['loss'][-1]:.4f}")
 
 
-# 8. Training on real data (MSINT dataset)
+# 7b. Training on real data (MSINT dataset)
 
 # Load MNIST dataset
 (x_train, _), (x_test, _) = keras.datasets.mnist.load_data()

@@ -16,4 +16,4 @@
 - unable to figure out GPU passthrough to VM at the moment, using google colab in the meantime
 - will clean install windows after backing up files and retry native/wsl tensorflow installation
 
-- as advised in order to familiiarise myself with tensorflow and keras, created simple CNN on colab (Conv2D, 1x1, Conv2DTranspose)
+- built simple CNN on google colab with Conv2D, 1x1, and Conv2DTranspose trained on real data (MSINT database)

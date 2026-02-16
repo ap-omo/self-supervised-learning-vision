@@ -212,6 +212,9 @@ x_test = np.repeat(x_test, 3, axis=-1)
 print(f"Training data: {x_train.shape}")  # (60000, 32, 32, 3)
 print(f"Test data: {x_test.shape}")       # (10000, 32, 32, 3)
 
+# Rebuild model with fresh weights (very important if model has already been trained)
+model = build_simple_autoencoder()
+
 # Compile and train
 model.compile(optimizer='adam', loss='mse', metrics=['mae'])
 

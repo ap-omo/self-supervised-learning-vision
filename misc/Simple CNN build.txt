@@ -1,4 +1,4 @@
-1. Setup
+# 1. Setup
 
 import tensorflow as tf
 from tensorflow import keras
@@ -15,7 +15,7 @@ np.random.seed(42)
 tf.random.set_seed(42)
 
 
-2. Conv2D
+# 2. Conv2D
 
 # Create simple test image (32×32 with 3 color channels)
 test_image = np.random.randn(1, 32, 32, 3).astype(np.float32)
@@ -37,7 +37,7 @@ output = conv_layer(test_image)
 print(f"Output shape: {output.shape}") # 16 feature maps instead of 3 color channels
 
 
-3. 1x1 Convolution
+# 3. 1x1 Convolution
 
 # Start with 64 channels
 x = layers.Conv2D(filters=64, kernel_size=3,
@@ -53,7 +53,7 @@ x = layers.Conv2D(filters=64, kernel_size=1, activation='relu', name='expand')(x
 print(f"After 1×1 expansion: {x.shape}") # 16 to 64 channels
 
 
-4. Conv2D Transpose (Upsampling)
+# 4. Conv2D Transpose (Upsampling)
 
 # Start with a small feature map (downsampled)
 small_features = layers.Conv2D(32, 3, strides=2, # Strides=2 halves spatial dimensions
@@ -72,7 +72,7 @@ activation='relu'
 print(f"After upsampling (transpose conv): {upsampled.shape}") # Back to 32×32
 
 
-5. Building CNN (combining all 3)
+# 5. Building CNN (combining all 3)
 
 def build_simple_autoencoder():
   """
@@ -107,7 +107,7 @@ def build_simple_autoencoder():
 model = build_simple_autoencoder()
 
 
-6. Displaying images
+# 6. Displaying images
 
 # Display single image
 plt.figure(figsize=(4, 4))
@@ -147,7 +147,7 @@ plt.tight_layout()
 plt.show()
 
 
-7. Training Model
+# 7. Training Model
 
 # Training Model
 
@@ -190,7 +190,7 @@ plt.show()
 print(f"Final loss: {history.history['loss'][-1]:.4f}")
 
 
-8. Training on real data (MSINT dataset)
+# 8. Training on real data (MSINT dataset)
 
 # Load MNIST dataset
 (x_train, _), (x_test, _) = keras.datasets.mnist.load_data()

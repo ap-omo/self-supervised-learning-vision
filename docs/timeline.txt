@@ -1,1 +1,19 @@
+- created repository
+- installed requirements for tensorflow (cuda, cudnn etc.)
+- cleaned environment due to issues during attempted tensorflow installation
 
+- issues installing tensorflow natively
+- issues installing wsl2 for tensorflow
+- reset computer due to many internal issues which arose after cleaning environment
+- installed VM software for running tensorflow on a Linux distribution
+
+- created Ubuntu VM for tensorflow installation
+- revised related machine learning topics (ANNs, backpropagation, VAEs etc.)
+- revised related computer vision topics (Convolutions, CNNs etc.)
+
+- wrote project outline consisting of the description (aims, substance, end-goals etc.), tasks and deliverables, and bibliography of research 
+
+- unable to figure out GPU passthrough to VM at the moment, using google colab in the meantime
+- will clean install windows after backing up files and retry native/wsl tensorflow installation
+
+- as advised in order to familiiarise myself with tensorflow and keras, created simple CNN on colab

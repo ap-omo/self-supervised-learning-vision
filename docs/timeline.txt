@@ -8,7 +8,7 @@
 - installed VM software for running tensorflow on a Linux distribution
 
 - created Ubuntu VM for tensorflow installation
-- revised related machine learning topics (ANNs, backpropagation, VAEs etc.)
+- revised related machine learning topics (ANNs, backpropagation etc.)
 - revised related computer vision topics (Convolutions, CNNs etc.)
 
 - wrote project outline consisting of the description (aims, substance, end-goals etc.), tasks and deliverables, and bibliography of research papers/articles planned to use for project
@@ -17,3 +17,13 @@
 - will clean install windows after backing up files and retry native/wsl tensorflow installation
 
 - built simple CNN on google colab with Conv2D, 1x1, and Conv2DTranspose trained on real data (MSINT database)
+
+- resolved issues on GPU passthrough with tensorflow, now using VSCode through WSL2 with Jupyter Notebook
+- researched VAEs
+- attempted building a VAE, will try to implement it into current CNN later on 
+
+- researched and experimented with different activation functions on convolutions and the effect each parameter has on the output, along with how they react to different image inputs
+- researched and experimented with different optimisers and loss functions for training
+
+- built a CNN (removing all the unnecessary code that was used to familiarise myself with building them) with a VAE implementation
+- amended it so that it would be easier to change parameters for filters and training later on as different parameters result in higher efficiency and quality for different images

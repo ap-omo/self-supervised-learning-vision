@@ -1,3 +1,4 @@
-- Clean install windows and move from google colab to native / wsl2 tensorflow
-- Research into VAEs
-- Learn how to implement and experiment with VAEs on existing CNN
+- evaluate outputs from different parameters and figure out what suits different types of images
+- as input images are random, need to figure out a way to create a function (or a suitable approach) to find optimal parameters are selected for filters and training, keeping in mind efficiency and computational power
+- plan mid project demonstration
+- have a deeper look at https://keras.io/api/models/model_training_apis/ (different model training methods) 

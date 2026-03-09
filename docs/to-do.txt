@@ -3,4 +3,4 @@
 - plan mid project demonstration
 - have a deeper look at https://keras.io/api/models/model_training_apis/ (different model training methods) 
 - expand CNN by adding more layers during encoding/decoding for better results
-- move onto testing on diferent harder datasets
+- move onto testing on different harder datasets (CelebA, CIFAR-10 etc.)

@@ -2,3 +2,5 @@
 - as input images are random, need to figure out a way to create a function (or a suitable approach) to find optimal parameters are selected for filters and training, keeping in mind efficiency and computational power
 - plan mid project demonstration
 - have a deeper look at https://keras.io/api/models/model_training_apis/ (different model training methods) 
+- expand CNN by adding more layers during encoding/decoding for better results
+- move onto testing on diferent harder datasets

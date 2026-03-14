@@ -14,16 +14,24 @@
 - wrote project outline consisting of the description (aims, substance, end-goals etc.), tasks and deliverables, and bibliography of research papers/articles planned to use for project
 
 - unable to figure out GPU passthrough to VM at the moment, using google colab in the meantime
-- will clean install windows after backing up files and retry native/wsl tensorflow installation
+  - will clean install windows after backing up files and retry native/wsl tensorflow installation
 
 - built simple CNN on google colab with Conv2D, 1x1, and Conv2DTranspose trained on real data (MSINT database)
 
 - resolved issues on GPU passthrough with tensorflow, now using VSCode through WSL2 with Jupyter Notebook
-- researched VAEs
-- attempted building a VAE, will try to implement it into current CNN later on 
+- conducted research on VAEs
+  - attempted building a VAE, will try to implement it into current CNN later on 
 
 - researched and experimented with different activation functions on convolutions and the effect each parameter has on the output, along with how they react to different image inputs
 - researched and experimented with different optimisers and loss functions for training
 
 - built a barebones CNN for MNIST with a VAE implementation
-- amended it so that it would be easier to change parameters for filters and training later on as different parameters result in higher efficiency and quality for different images
+  - amended code for easier adjustment of parameters for filters and training later on as different parameters result in higher efficiency and quality for different images
+    - added constants for important parameters and matplotlib graph visualisations to find optimal values quicker
+
+- added callbacks in training function to help with optimisation and efficiency
+  - decreases learning rate on plateau and stops before specified maximum number of epochs if certain threshold reached
+    - helps reduce risk of overfitting as well as mitigate outlier effects on output
+
+- wrote document explaining and evaluating different activation functions and keras optimisers, loss fuctions, metrics etc.
+  - furthering my knowledge in this area will help me choose what produces the best outputs for the final release

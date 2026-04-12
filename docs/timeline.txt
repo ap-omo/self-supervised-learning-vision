@@ -33,5 +33,9 @@
   - decreases learning rate on plateau and stops before specified maximum number of epochs if certain threshold reached
     - helps reduce risk of overfitting as well as mitigate outlier effects on output
 
-- wrote document explaining and evaluating different activation functions and keras optimisers, loss fuctions, metrics etc.
+- wrote document explaining and evaluating different activation functions and keras optimisers, hyperparameters, loss fuctions, metrics etc.
+  - acts as a guide on how to interpret current outputs and tune the model for better optimisation and quality of outputs 
   - furthering my knowledge in this area will help me choose what produces the best outputs for the final release
+
+- moved onto more complex datasets (CIFAR-10)
+  - assigned more important values to constants for easier and quicker tuning to find the values for better results

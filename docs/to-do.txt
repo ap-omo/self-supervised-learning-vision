@@ -4,3 +4,5 @@
     - building on to this, maybe a machine learning within a machine learning approach where parameters are changed after comparing input images to reconstructions and generations
 
 - have a quick look at https://keras.io/api/models/model_training_apis/ (different model training methods) to see if it can be useful
+
+- plan project report

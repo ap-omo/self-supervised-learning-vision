@@ -1,12 +1,15 @@
+- plan project report
+
 - conduct research into hebian layers
 	- specifically their use in training neural networks
+	- alternative to deep learning, does not use gradient descent
 
 - learn how to implement many small VAEs that learn locally across small patches of the image then stack them hierarchically on top of each other
 	- as opposed to one big VAE for a whole image
 
-- in order to enable local self-supervised learning, need to figure out a suitable approach (through a function or other means) to find optimal parameter values for the input image (bearing in mind input images are random), keeping in mind efficiency and computational power in relation to quality of output
-    - building on to this, maybe a machine learning within a machine learning approach where parameters are changed after comparing input images to reconstructions and generations
+- figure out a suitable approach (through a function or other means) to find optimal parameter values for the input image (input images will be random)
+	- this is in order to enable local self-supervised learning
+	- keep in mind efficiency and computational power in relation to quality of output
+	- maybe a machine learning within a machine learning approach where parameters are changed after comparing input images to reconstructions and generations
 
 - have a quick look at https://keras.io/api/models/model_training_apis/ (different model training methods) to see if can be of use 
-
-- plan project report

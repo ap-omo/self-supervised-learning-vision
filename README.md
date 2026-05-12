@@ -14,5 +14,5 @@ This repository includes:
 
 - Various models grouped with their improvements and revisions over time
   - Revisions made and effects described between models
-  - 
+  
 - A final model which is the most biologically plausible out of the ones created while still producing output to a high standard

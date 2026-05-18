@@ -39,3 +39,5 @@
 
 - moved onto more complex datasets (CIFAR-10)
   - assigned more important values to constants for easier and quicker tuning to find the values for better results
+
+- still to finish

@@ -1,5 +1,5 @@
-v1: first model built upon etc.
+# Simple CNNs
 
-v2: changes
-
-v3: ...
+- First started with creating a barebones CNN with numpy generated random noise as input
+- Moved onto the MNIST database as the inputs
+- Implemented a VAE into the model

@@ -1,7 +1,6 @@
-- look into using many small VAEs that learn locally across small patches of the image then stack them hierarchically on top of each other
-	- as opposed to one big VAE for a whole image
-
 -  brainstorm a suitable approach (through a function or other means) to find optimal parameter values for the input image (input images will be random)
 	- this is in order to enable local self-supervised learning
 	- keep in mind efficiency and computational power in relation to quality of output
 	- maybe a machine learning within a machine learning approach where parameters are changed after comparing input images to reconstructions and generations
+
+- conduct further research into Hebbian learning and how to implement it with minimal loss of output quality or efficiency

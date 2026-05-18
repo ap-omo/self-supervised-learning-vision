@@ -1,5 +1,4 @@
-v1: first model built upon etc.
+# Moved onto a greedy layer-wise approach after the VAE implementation experiments
 
-v2: changes
-
-v3: ...
+- Refined and optimised progressively
+- New methods implemented, callbacks created, and overall efficiency and legibility improved over revisions
